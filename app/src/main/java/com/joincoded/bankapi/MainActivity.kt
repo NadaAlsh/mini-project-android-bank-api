@@ -1,19 +1,27 @@
 package com.joincoded.bankapi
 
+import CardsSection
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.unit.dp
+import com.joincoded.bankapi.data.FinanceSection
+import com.joincoded.bankapi.data.TransactionsSection
+//import com.joincoded.bankapi.data.StatementCard
+//import com.joincoded.bankapi.data.TransactionList
+import com.joincoded.bankapi.data.WalletSection
 import com.joincoded.bankapi.ui.theme.BankAPITheme
 
 class MainActivity : ComponentActivity() {
@@ -26,7 +34,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting(name = "<^~^>")
+                    HomeScreen()
 
                 }
             }
@@ -34,18 +42,36 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun HomeScreen() {
+    Scaffold(
+//        bottomBar = {
+//        BottomNavigationBar()
+//    }
+    ) {
+        padding ->
+        Column (
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)){
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BankAPITheme {
-        Greeting("Android")
+            WalletSection()
+            CardsSection()
+            FinanceSection()
+            Spacer(modifier = Modifier.height(10.dp))
+            TransactionsSection()
+            //TransactionList()
+            //StatementCard("Deposit", "Fatma", 10.0, 2000.0, "1/31")
+        }
     }
 }
+
+//@Preview(showBackground = true)
+//@Composable
+//fun GreetingPreview() {
+//    BankAPITheme {
+//        Greeting("Android")
+//    }
+//}
