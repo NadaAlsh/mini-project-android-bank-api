@@ -22,5 +22,8 @@ interface BankApiService {
                         @Body amountChange: AmountChange
     ): Response<Unit>
 
-
+    @PUT(Constants.withdrawEndpoint)
+    suspend fun withdraw(@Header(Constants.authorization) token: String?,
+                        @Body amountChange: AmountChange
+    ): Response<Unit>
 }
