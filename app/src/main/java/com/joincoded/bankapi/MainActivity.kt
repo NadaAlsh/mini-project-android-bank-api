@@ -14,7 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.joincoded.bankapi.composable.MyBankApp
 import com.joincoded.bankapi.ui.theme.BankAPITheme
+import com.joincoded.bankapi.viewmodel.BankViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Greeting(name = "<^~^>")
+                    MyBankApp()
 
                 }
             }
@@ -48,4 +51,5 @@ fun GreetingPreview() {
     BankAPITheme {
         Greeting("Android")
     }
+
 }
