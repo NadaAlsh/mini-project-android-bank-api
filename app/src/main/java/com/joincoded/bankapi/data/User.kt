@@ -5,4 +5,5 @@ data class User(
     var password: String,
     var image: String,
     var token: String?
+
 )

@@ -6,6 +6,11 @@ class Constants {
         const val signupEndpoint = "signup"
         const val depositEndpoint = "deposit"
         const val authorization = "Authorization"
+        const val signinEndpoint= "signin"
+        const val transferEndpoint= "transfer"
+        const val updateEndpoint = "update"
+        const val authentication= "authentication"
+
     }
 
 }

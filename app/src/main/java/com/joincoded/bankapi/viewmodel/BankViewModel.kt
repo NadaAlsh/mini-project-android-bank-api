@@ -6,11 +6,13 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.joincoded.bankapi.data.AmountChange
+import com.joincoded.bankapi.data.Credentials
 import com.joincoded.bankapi.data.User
 import com.joincoded.bankapi.data.response.TokenResponse
 import com.joincoded.bankapi.network.BankApiService
 import com.joincoded.bankapi.network.RetrofitHelper
 import kotlinx.coroutines.launch
+import android.credentials.Credential
 
 class BankViewModel : ViewModel() {
     private val apiService = RetrofitHelper.getInstance().create(BankApiService::class.java)
@@ -32,7 +34,8 @@ class BankViewModel : ViewModel() {
     fun deposit(amount: Double) {
         viewModelScope.launch {
             try {
-                val response = apiService.deposit(token = token?.getBearerToken(), AmountChange(amount))
+                val response =
+                    apiService.deposit(token = token?.getBearerToken(), AmountChange(amount))
 
             } catch (e: Exception) {
                 println("Error $e")
@@ -40,4 +43,17 @@ class BankViewModel : ViewModel() {
 
         }
     }
+
+    fun signin(username: String, password: String) {
+        viewModelScope.launch {
+            try {
+                val credentials = Credentials(username, password)
+                val response = apiService.signin(credentials)
+                token = response.body()
+            } catch (e: Exception) {
+                println("Error $e")
+            }
+        }
+    }
+
 }
