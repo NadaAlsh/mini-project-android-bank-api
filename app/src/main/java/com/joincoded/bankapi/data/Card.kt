@@ -8,6 +8,6 @@ data class Card(
     val cardNumber: String,
     val cardName: String,
     val color: Brush,
-    val modifier: Any,
     var balance: Double,
+    var details: String
 )

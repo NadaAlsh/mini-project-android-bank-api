@@ -59,28 +59,28 @@ fun GreetingPreview() {
 
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview
-@Composable
-fun HomeScreen() {
-    Scaffold(
-//        bottomBar = {
-//        BottomNavigationBar()
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Preview
+//@Composable
+//fun HomeScreen() {
+//    Scaffold(
+////        bottomBar = {
+////        BottomNavigationBar()
+////    }
+//    ) {
+//            padding ->
+//        Column (
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(padding)){
+//
+//            WalletSection()
+//            CardsSection()
+//            FinanceSection()
+//            Spacer(modifier = Modifier.height(10.dp))
+//            TransactionsSection()
+//            //TransactionList()
+//            //StatementCard("Deposit", "Fatma", 10.0, 2000.0, "1/31")
+//        }
 //    }
-    ) {
-            padding ->
-        Column (
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)){
-
-            WalletSection()
-            CardsSection()
-            FinanceSection()
-            Spacer(modifier = Modifier.height(10.dp))
-            TransactionsSection()
-            //TransactionList()
-            //StatementCard("Deposit", "Fatma", 10.0, 2000.0, "1/31")
-        }
-    }
-}
+//}
