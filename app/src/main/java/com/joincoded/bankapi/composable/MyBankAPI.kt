@@ -3,6 +3,7 @@ package com.joincoded.bankapi.composable
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyRow
@@ -31,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.joincoded.bankapi.data.Card
 import com.joincoded.bankapi.ui.theme.Purple40
@@ -41,6 +43,8 @@ import com.joincoded.bankapi.data.Finance
 import com.joincoded.bankapi.data.Offer
 import com.joincoded.bankapi.data.financeList
 import com.joincoded.bankapi.ui.theme.PurpleGrey40
+import androidx.navigation.compose.rememberNavController
+import com.joincoded.bankapi.viewmodel.BankViewModel
 
 @Preview
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -59,6 +63,7 @@ fun MyBankApp() {
                 FinanceSection()
                 OffersSection()
                 TransactionsSection()
+                //HomeScreen(navController = rememberNavController())
             }
         }
     )
@@ -69,17 +74,22 @@ fun TopBar() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(16.dp)
+            .background(color = Color.LightGray, shape = RoundedCornerShape(18.dp)),
         contentAlignment = Alignment.CenterStart
     ) {
-        // You can replace this with an actual profile icon
-        Icon(
-            imageVector = Icons.Default.Person,
-            contentDescription = "Profile Icon",
-            modifier = Modifier.size(40.dp)
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        Text(text = "Hello, Username", fontWeight = FontWeight.Bold)
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(2.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Default.Person,
+                contentDescription = "Profile Icon",
+                modifier = Modifier.size(30.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(text = "Hi Fatma", fontWeight = FontWeight.Bold)
+        }
     }
 }
 
@@ -121,7 +131,7 @@ fun CardsSection() {
     LazyRow(//row
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 16.dp)
+            .padding(vertical = 28.dp)
     ) {
         items(cards){ item ->
             CardItem(cardType = item.cardName, cardDetails = item.details, color = item.color)
@@ -199,6 +209,12 @@ fun FinanceItem(type: String, finance: Finance) {
             .fillMaxWidth()
             .padding(16.dp)
     ) {
+        Text(
+            text = type,
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+            modifier = Modifier.padding(16.dp)
+        )
         Text(text = type, fontWeight = FontWeight.Bold, fontSize = 18.sp, modifier = Modifier.padding(16.dp))
 
         Box(modifier = Modifier.padding(16.dp)) {
@@ -284,9 +300,15 @@ fun OfferItem(offerName: String) {
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        Text(text = offerName, fontWeight = FontWeight.Bold, fontSize = 18.sp, modifier = Modifier.padding(16.dp))
+        Text(
+            text = offerName,
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+            modifier = Modifier.padding(16.dp)
+        )
     }
 }
+
 @Preview
 @Composable
 fun TransactionsSection() {
@@ -323,4 +345,61 @@ fun TransactionItem(name: String, date: String, type: String, amount: String, ba
         }
     }
 }
-
+//
+//@Composable
+//fun HomeScreen(navController: NavHostController) {
+//    Column(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .padding(16.dp),
+//        verticalArrangement = Arrangement.Center,
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//        Text(text = "Welcome to Your SOS Bank")
+//        Spacer(modifier = Modifier.height(16.dp))
+//
+//        Button(
+//            onClick = {
+//                navController.navigate("deposit")
+//            },
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(8.dp)
+//        ) {
+//            Text(text = "Deposit Funds")
+//        }
+//
+//        Button(
+//            onClick = {
+//                navController.navigate("withdraw")
+//            },
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(8.dp)
+//        ) {
+//            Text(text = "Withdraw Funds")
+//        }
+//
+//        Button(
+//            onClick = {
+//                navController.navigate("transfer")
+//            },
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(8.dp)
+//        ) {
+//            Text(text = "Transfer Funds")
+//        }
+//
+//        Button(
+//            onClick = {
+//                navController.navigate("profile")
+//            },
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(8.dp)
+//        ) {
+//            Text(text = "View Profile")
+//        }
+//    }
+//}
